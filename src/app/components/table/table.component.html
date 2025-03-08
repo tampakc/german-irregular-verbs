@@ -1,0 +1,8 @@
+<div class="rounded-md border border-gray-600">
+  <table>
+    <thead app-header [columns]="columns"></thead>
+    <tbody>
+      <tr *ngFor="let row of data" app-row [columns]="columns" [row]="row"></tr>
+    </tbody>
+  </table>
+</div>
