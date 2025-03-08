@@ -82,6 +82,12 @@
             "styles": ["src/styles.css"],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://tampakc.github.io/german-irregular-verbs/"
+          }
         }
       }
     }
