@@ -4,7 +4,7 @@ import { ColumnProps } from '../table/table.component';
 
 @Component({
   selector: '[app-header]',
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
