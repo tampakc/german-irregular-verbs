@@ -4,22 +4,28 @@ import { Directive, Input, Output, EventEmitter } from '@angular/core';
 export abstract class CellDirective<T> {
   @Input() data!: T;
   public isValid: boolean = false;
+  public isTouched: boolean = false;
 
   @Output() valueChange = new EventEmitter<T>();
   @Output() validityChange = new EventEmitter<boolean>();
   
   protected onChange(value: T) {
-    console.log(value);
-    this.valueChange.emit(value);
+    this.setValue(value);
 
     const newIsValid = value == this.data;;
     this.setNewValidity(newIsValid);
   }
 
-  protected setNewValidity(value: boolean) {
-    if (this.isValid != value) {
-      this.validityChange.emit(value);
+  protected setValue(value: T) {
+    if (this.data != value) {
+      this.valueChange.emit(value);
     }
-    this.isValid = value;
+  }
+
+  protected setNewValidity(valid: boolean) {
+    if (this.isValid != valid) {
+      this.validityChange.emit(valid);
+    }
+    this.isValid = valid;
   }
 }

@@ -1,5 +1,7 @@
 <input
   [(ngModel)]="input"
   (ngModelChange)="onChange(input)"
-  [class.invalid]="!isValid"
+  [class.invalid]="isTouched && !isValid"
+  [class.valid]="isTouched && isValid"
+  (blur)="onBlur()"
 />

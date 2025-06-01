@@ -1,3 +1,29 @@
 .invalid {
   border: 1px solid red;
+  animation: 1s colorInvalidBlink;
+}
+
+@keyframes colorInvalidBlink {
+  0% {
+    background-color: #d1798e;
+  }
+
+  30% {
+    background-color: #c92c4e;
+  }
+}
+
+.valid {
+  border: 1px solid green;
+  animation: 1s colorValidBlink;
+}
+
+@keyframes colorValidBlink {
+  0% {
+    background-color: #9dd490;
+  }
+
+  30% {
+    background-color: #70c963;
+  }
 }

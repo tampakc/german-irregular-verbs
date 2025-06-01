@@ -14,4 +14,13 @@ export class TextInputCellComponent extends CellDirective<string> {
     this.input = "";
     this.isValid = false;
   }
+  
+  onBlur() {
+    this.isTouched = true;
+    this.setNewValidity(this.input == this.data);
+  }
+
+  protected override onChange(value: string) {
+    this.setValue(value);
+  }
 }
