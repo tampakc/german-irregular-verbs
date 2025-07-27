@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VerbService, Verb } from '../../services/verb.service';
-import {
-  ColumnProps
-} from '../../components/table/table/table.component';
+import { ColumnProps } from '../../components/table/table/table.component';
 import { TableModule } from '../../components/table/table.module';
 
 @Component({
@@ -15,7 +13,7 @@ export class QuizComponent implements OnInit {
 
   public verbColumns: ColumnProps<Verb>[] = [
     {
-      type: "display",
+      type: 'display',
       key: 'infinitiv',
       header: 'Infinitiv',
       data: (verb: Verb) => verb.infinitiv,
@@ -27,13 +25,13 @@ export class QuizComponent implements OnInit {
     //   data: (verb: Verb) => verb.praesens,
     // },
     {
-      type: "display",
+      type: 'display',
       key: 'preateritum',
       header: 'Präteritum',
       data: (verb: Verb) => verb.praeteritum,
     },
     {
-      type: "input",
+      type: 'input',
       key: 'perfekt',
       header: 'Perfekt',
       data: (verb: Verb) => verb.perfekt,

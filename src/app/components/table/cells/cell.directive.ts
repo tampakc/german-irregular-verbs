@@ -8,11 +8,11 @@ export abstract class CellDirective<T> {
 
   @Output() valueChange = new EventEmitter<T>();
   @Output() validityChange = new EventEmitter<boolean>();
-  
+
   protected onChange(value: T) {
     this.setValue(value);
 
-    const newIsValid = value == this.data;;
+    const newIsValid = value == this.data;
     this.setNewValidity(newIsValid);
   }
 

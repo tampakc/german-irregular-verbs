@@ -35,7 +35,6 @@ export interface CheckboxColumnProps<T> extends BaseColumnProps<T> {
   data: (row: T) => boolean;
 }
 
-
 @Component({
   selector: 'app-table',
   standalone: false,
