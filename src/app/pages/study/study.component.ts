@@ -9,7 +9,10 @@ import { TableModule } from '../../components/table/table.module';
   templateUrl: './study.component.html',
 })
 export class StudyComponent implements OnInit {
-  verbs: Verb[] = [];
+  private allVerbs: Verb[] = [];
+
+  public verbs: Verb[] = [];
+  public focusMode: boolean = false;
 
   public verbColumns: ColumnProps<Verb>[] = [
     {
@@ -30,13 +33,41 @@ export class StudyComponent implements OnInit {
       header: 'Perfekt',
       data: (verb: Verb) => `${verb.auxiliaryVerb} ${verb.perfekt}`,
     },
+    {
+      type: 'checkbox',
+      key: 'attention',
+      header: 'Attention',
+      data: (verb: Verb) => verb.attention,
+      onChange: (verb: Verb, value: boolean) => {
+        this.verbService.setAttention(verb.infinitiv, value);
+        this.renewAttention();
+      },
+    },
   ];
 
   constructor(private verbService: VerbService) {}
 
   ngOnInit() {
     this.verbService.getVerbs().subscribe((data) => {
-      this.verbs = data;
+      this.allVerbs = data;
+      this.verbs = this.focusMode
+        ? this.allVerbs.filter((verb) => verb.attention)
+        : this.allVerbs;
     });
+  }
+
+  public toggleFocusMode() {
+    this.focusMode = !this.focusMode;
+    this.renewAttention();
+  }
+
+  private renewAttention() {
+    const attentionVerbs = this.verbService.getAttentionVerbs();
+    this.allVerbs.forEach(
+      (verb) => (verb.attention = attentionVerbs.has(verb.infinitiv)),
+    );
+    this.verbs = this.focusMode
+      ? this.allVerbs.filter((verb) => verb.attention)
+      : this.allVerbs;
   }
 }

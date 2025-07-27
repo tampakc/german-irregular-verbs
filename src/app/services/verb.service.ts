@@ -11,6 +11,7 @@ export interface Verb {
   auxiliaryVerb: string;
   perfekt: string;
   level: string;
+  attention: boolean;
 }
 
 @Injectable({
@@ -18,22 +19,54 @@ export interface Verb {
 })
 export class VerbService {
   private csvUrl = 'assets/verbs.csv';
+  private attentionLocalStorageKey = 'attentionVerbs';
+
   private verbsCache$: Observable<Verb[]> | null = null;
 
   constructor(private http: HttpClient) {}
 
-  getVerbs(): Observable<Verb[]> {
+  public getVerbs(): Observable<Verb[]> {
+    const attentionVerbs = this.getAttentionVerbs();
+
     if (!this.verbsCache$) {
       this.verbsCache$ = this.http
         .get(this.csvUrl, { responseType: 'text' })
         .pipe(
           map((csvData) => {
             const parsed = Papa.parse(csvData, { header: true });
-            return parsed.data as Verb[];
+            const verbs = parsed.data as Verb[];
+            verbs.map(
+              (verb) => (verb.attention = attentionVerbs.has(verb.infinitiv)),
+            );
+
+            return verbs;
           }),
           shareReplay(1), // Cache the result for future calls
         );
     }
+
     return this.verbsCache$;
+  }
+
+  public setAttention(infinitiv: string, attention: boolean): void {
+    const attentionVerbsRaw = localStorage.getItem(
+      this.attentionLocalStorageKey,
+    );
+    const attentionVerbs = new Set(attentionVerbsRaw?.split(';'));
+    if (attention) {
+      attentionVerbs.add(infinitiv);
+    } else {
+      attentionVerbs.delete(infinitiv);
+    }
+    localStorage.setItem(
+      this.attentionLocalStorageKey,
+      Array.from(attentionVerbs.values()).join(';'),
+    );
+  }
+
+  public getAttentionVerbs(): Set<string> {
+    const attentionVerbsRaw =
+      localStorage.getItem(this.attentionLocalStorageKey) || '';
+    return new Set(attentionVerbsRaw.split(';'));
   }
 }

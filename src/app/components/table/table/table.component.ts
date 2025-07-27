@@ -33,6 +33,7 @@ export interface DropdownColumnProps<T> extends BaseColumnProps<T> {
 export interface CheckboxColumnProps<T> extends BaseColumnProps<T> {
   type: 'checkbox';
   data: (row: T) => boolean;
+  onChange: (row: T, value: boolean) => void;
 }
 
 @Component({
