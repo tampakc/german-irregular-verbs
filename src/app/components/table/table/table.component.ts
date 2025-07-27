@@ -36,7 +36,6 @@ export interface CheckboxColumnProps<T> extends BaseColumnProps<T> {
   onChange: (row: T, value: boolean) => void;
 }
 
-
 @Component({
   selector: 'app-table',
   standalone: false,

@@ -8,7 +8,7 @@ export abstract class CellDirective<T> {
 
   @Output() valueChange = new EventEmitter<T>();
   @Output() validityChange = new EventEmitter<boolean>();
-  
+
   protected onChange(value: T) {
     this.setValue(value);
 

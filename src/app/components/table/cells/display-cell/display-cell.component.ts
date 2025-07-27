@@ -5,7 +5,7 @@ import { CellDirective } from '../cell.directive';
   selector: '[app-display-cell]',
   standalone: false,
   templateUrl: './display-cell.component.html',
-  styleUrls: ['./display-cell.component.css']
+  styleUrls: ['./display-cell.component.css'],
 })
 export class DisplayCellComponent extends CellDirective<string> {
   DisplayCellComponent() {

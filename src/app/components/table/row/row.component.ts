@@ -5,7 +5,7 @@ import { ColumnProps } from '../table/table.component';
   selector: '[app-row]',
   standalone: false,
   templateUrl: './row.component.html',
-  styleUrl: './row.component.css'
+  styleUrl: './row.component.css',
 })
 export class RowComponent<T> {
   @Input() columns: ColumnProps<T>[] = [];

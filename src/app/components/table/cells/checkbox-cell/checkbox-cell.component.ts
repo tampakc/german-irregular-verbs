@@ -5,7 +5,7 @@ import { CellDirective } from '../cell.directive';
   selector: '[app-checkbox-cell]',
   standalone: false,
   templateUrl: './checkbox-cell.component.html',
-  styleUrl: './checkbox-cell.component.css'
+  styleUrl: './checkbox-cell.component.css',
 })
 export class CheckboxCellComponent extends CellDirective<boolean> {
   public input: boolean = false;

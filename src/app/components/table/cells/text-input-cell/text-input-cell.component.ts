@@ -5,16 +5,16 @@ import { CellDirective } from '../cell.directive';
   selector: '[app-text-input-cell]',
   standalone: false,
   templateUrl: './text-input-cell.component.html',
-  styleUrls: ['./text-input-cell.component.css']
+  styleUrls: ['./text-input-cell.component.css'],
 })
 export class TextInputCellComponent extends CellDirective<string> {
-  public input = "";
-  
+  public input = '';
+
   ngOnInit(): void {
-    this.input = "";
+    this.input = '';
     this.isValid = false;
   }
-  
+
   onBlur() {
     this.isTouched = true;
     
