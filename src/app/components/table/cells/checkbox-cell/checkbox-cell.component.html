@@ -1,4 +1,7 @@
-<label>
-  <input type="checkbox" [(ngModel)]="data" />
-  Check me
-</label>
+<div class="flex items-center justify-center">
+  <input
+    type="checkbox"
+    [(ngModel)]="input"
+    (ngModelChange)="onChange(input)"
+  />
+</div>

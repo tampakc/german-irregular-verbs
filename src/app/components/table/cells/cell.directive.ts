@@ -12,7 +12,7 @@ export abstract class CellDirective<T> {
   protected onChange(value: T) {
     this.setValue(value);
 
-    const newIsValid = value == this.data;;
+    const newIsValid = this.calculateValidity(value);
     this.setNewValidity(newIsValid);
   }
 
@@ -20,6 +20,10 @@ export abstract class CellDirective<T> {
     if (this.data != value) {
       this.valueChange.emit(value);
     }
+  }
+
+  protected calculateValidity(value: T) : boolean {
+    return value == this.data;
   }
 
   protected setNewValidity(valid: boolean) {

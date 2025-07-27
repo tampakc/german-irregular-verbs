@@ -18,7 +18,7 @@
       app-checkbox-cell
       *ngIf="col.type === 'checkbox'"
       [data]="col.data(row)"
-      (valueChange)="onValueChange($event, col.key)"
+      (valueChange)="col.onChange(row, $event)"
       (validityChange)="onValidityChange($event, col.key)"
     ></div>
 

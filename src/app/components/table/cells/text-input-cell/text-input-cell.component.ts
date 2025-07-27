@@ -17,7 +17,9 @@ export class TextInputCellComponent extends CellDirective<string> {
   
   onBlur() {
     this.isTouched = true;
-    this.setNewValidity(this.input == this.data);
+    
+    const newValidity = this.calculateValidity(this.input);
+    this.setNewValidity(newValidity);
   }
 
   protected override onChange(value: string) {
