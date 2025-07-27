@@ -1,0 +1,42 @@
+<!-- <div
+  app-cell
+  class="px-3 py-2"
+  *ngFor="let column of columns"
+  [cellData]="column.data(row)"
+></div> -->
+
+<ng-container *ngFor="let col of columns">
+  <td>
+    <div
+      app-display-cell
+      class="px-3 py-2"
+      *ngIf="col.type === 'display'"
+      [data]="col.data(row)"
+    ></div>
+
+    <div
+      app-checkbox-cell
+      *ngIf="col.type === 'checkbox'"
+      [data]="col.data(row)"
+      (valueChange)="onValueChange($event, col.key)"
+      (validityChange)="onValidityChange($event, col.key)"
+    ></div>
+
+    <div
+      app-text-input-cell
+      *ngIf="col.type === 'input'"
+      [data]="col.data(row)"
+      (valueChange)="onValueChange($event, col.key)"
+      (validityChange)="onValidityChange($event, col.key)"
+    ></div>
+
+    <div
+      app-dropdown-cell
+      *ngIf="col.type === 'dropdown'"
+      [data]="col.data(row)"
+      [options]="col.options"
+      (valueChange)="onValueChange($event, col.key)"
+      (validityChange)="onValidityChange($event, col.key)"
+    ></div>
+  </td>
+</ng-container>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { VerbService, Verb } from '../../services/verb.service';
 import {
-  ColumnProps,
-  TableComponent,
-} from '../../components/table/table.component';
+  ColumnProps
+} from '../../components/table/table/table.component';
+import { TableModule } from '../../components/table/table.module';
 
 @Component({
   selector: 'app-study',
-  imports: [TableComponent],
+  imports: [TableModule],
   templateUrl: './study.component.html',
 })
 export class StudyComponent implements OnInit {
@@ -15,21 +15,21 @@ export class StudyComponent implements OnInit {
 
   public verbColumns: ColumnProps<Verb>[] = [
     {
-      columnName: 'infinitiv',
+      type: "display",
+      key: 'infinitiv',
       header: 'Infinitiv (Präsens)',
-      sortable: true,
       data: (verb: Verb) => `${verb.infinitiv} (${verb.praesens})`,
     },
     {
-      columnName: 'preateritum',
+      type: "display",
+      key: 'preateritum',
       header: 'Präteritum',
-      sortable: true,
       data: (verb: Verb) => verb.praeteritum,
     },
     {
-      columnName: 'perfekt',
+      type: "display",
+      key: 'perfekt',
       header: 'Perfekt',
-      sortable: true,
       data: (verb: Verb) => `${verb.auxiliaryVerb} ${verb.perfekt}`,
     },
   ];

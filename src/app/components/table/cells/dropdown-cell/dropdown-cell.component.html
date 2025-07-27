@@ -1,0 +1,7 @@
+<!-- <select [value]="data" (change)="onChange($event)">
+  <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+</select> -->
+
+<select [(ngModel)]="data" (ngModelChange)="onChange(data)">
+  <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+</select>
