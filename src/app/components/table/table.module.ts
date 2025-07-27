@@ -28,6 +28,6 @@ import { HeaderComponent } from './header/header.component';
     TextInputCellComponent,
     DropdownCellComponent,
     CheckboxCellComponent,
-  ]
+  ],
 })
 export class TableModule {}
