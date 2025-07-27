@@ -22,7 +22,7 @@ export abstract class CellDirective<T> {
     }
   }
 
-  protected calculateValidity(value: T) : boolean {
+  protected calculateValidity(value: T): boolean {
     return value == this.data;
   }
 

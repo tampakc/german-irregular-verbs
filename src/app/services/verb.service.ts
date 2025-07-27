@@ -35,7 +35,9 @@ export class VerbService {
           map((csvData) => {
             const parsed = Papa.parse(csvData, { header: true });
             const verbs = parsed.data as Verb[];
-            verbs.map(verb => verb.attention = attentionVerbs.has(verb.infinitiv));
+            verbs.map(
+              (verb) => (verb.attention = attentionVerbs.has(verb.infinitiv)),
+            );
 
             return verbs;
           }),
@@ -47,18 +49,24 @@ export class VerbService {
   }
 
   public setAttention(infinitiv: string, attention: boolean): void {
-    const attentionVerbsRaw = localStorage.getItem(this.attentionLocalStorageKey);
+    const attentionVerbsRaw = localStorage.getItem(
+      this.attentionLocalStorageKey,
+    );
     const attentionVerbs = new Set(attentionVerbsRaw?.split(';'));
     if (attention) {
       attentionVerbs.add(infinitiv);
     } else {
       attentionVerbs.delete(infinitiv);
     }
-    localStorage.setItem(this.attentionLocalStorageKey, Array.from(attentionVerbs.values()).join(';'));
+    localStorage.setItem(
+      this.attentionLocalStorageKey,
+      Array.from(attentionVerbs.values()).join(';'),
+    );
   }
 
-  public getAttentionVerbs(): Set<string>{
-    const attentionVerbsRaw = localStorage.getItem(this.attentionLocalStorageKey) || '';
+  public getAttentionVerbs(): Set<string> {
+    const attentionVerbsRaw =
+      localStorage.getItem(this.attentionLocalStorageKey) || '';
     return new Set(attentionVerbsRaw.split(';'));
   }
 }

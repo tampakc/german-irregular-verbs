@@ -34,15 +34,15 @@ export class StudyComponent implements OnInit {
       data: (verb: Verb) => `${verb.auxiliaryVerb} ${verb.perfekt}`,
     },
     {
-      type: "checkbox",
-      key: "attention",
-      header: "Attention",
+      type: 'checkbox',
+      key: 'attention',
+      header: 'Attention',
       data: (verb: Verb) => verb.attention,
-      onChange: (verb : Verb, value: boolean) => {
+      onChange: (verb: Verb, value: boolean) => {
         this.verbService.setAttention(verb.infinitiv, value);
         this.renewAttention();
-      }
-    }
+      },
+    },
   ];
 
   constructor(private verbService: VerbService) {}
@@ -50,7 +50,9 @@ export class StudyComponent implements OnInit {
   ngOnInit() {
     this.verbService.getVerbs().subscribe((data) => {
       this.allVerbs = data;
-      this.verbs = this.focusMode ? this.allVerbs.filter(verb => verb.attention) : this.allVerbs;
+      this.verbs = this.focusMode
+        ? this.allVerbs.filter((verb) => verb.attention)
+        : this.allVerbs;
     });
   }
 
@@ -61,7 +63,11 @@ export class StudyComponent implements OnInit {
 
   private renewAttention() {
     const attentionVerbs = this.verbService.getAttentionVerbs();
-    this.allVerbs.forEach(verb => verb.attention = attentionVerbs.has(verb.infinitiv));
-    this.verbs = this.focusMode ? this.allVerbs.filter(verb => verb.attention) : this.allVerbs; 
+    this.allVerbs.forEach(
+      (verb) => (verb.attention = attentionVerbs.has(verb.infinitiv)),
+    );
+    this.verbs = this.focusMode
+      ? this.allVerbs.filter((verb) => verb.attention)
+      : this.allVerbs;
   }
 }
