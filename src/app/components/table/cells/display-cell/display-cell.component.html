@@ -1,1 +1,2 @@
-<span>{{ data }}</span>
+<span *ngIf="spoiler" appSpoiler>{{ data }}</span>
+<span *ngIf="!spoiler">{{ data }}</span>

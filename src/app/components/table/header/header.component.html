@@ -1,5 +1,17 @@
 <tr class="border-b border-gray-300 bg-teal-100">
   <th class="text-start p-3" *ngFor="let column of columns">
-    {{ column.header }}
+    <div class="flex items-center gap-2">
+      {{ column.header }}
+      <button
+        *ngIf="column.type === 'display' && column.spoilerToggle"
+        (click)="column.spoilerDefault = !column.spoilerDefault"
+        mat-icon-button
+        aria-label="Toggle spoiler"
+      >
+        <mat-icon>{{
+          column.spoilerDefault ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </div>
   </th>
 </tr>
