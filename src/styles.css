@@ -1,7 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+@import "./app/shared/directives/spoiler/spoiler.directive.css";
 
 button {
   @apply bg-blue-500 hover:bg-blue-700 cursor-pointer 
     transition-all duration-300 text-white font-bold py-2 px-4 rounded;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
