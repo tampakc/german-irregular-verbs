@@ -8,6 +8,7 @@ import { TextInputCellComponent } from './cells/text-input-cell/text-input-cell.
 import { DropdownCellComponent } from './cells/dropdown-cell/dropdown-cell.component';
 import { CheckboxCellComponent } from './cells/checkbox-cell/checkbox-cell.component';
 import { HeaderComponent } from './header/header.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { HeaderComponent } from './header/header.component';
     DropdownCellComponent,
     CheckboxCellComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SharedModule],
   exports: [
     TableComponent,
     HeaderComponent,
