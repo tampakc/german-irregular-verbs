@@ -17,6 +17,8 @@ export interface BaseColumnProps<T> {
 export interface DisplayColumnProps<T> extends BaseColumnProps<T> {
   type: 'display';
   data: (row: T) => string;
+  spoilerDefault?: boolean;
+  spoilerToggle?: boolean;
 }
 
 export interface TextInputColumnProps<T> extends BaseColumnProps<T> {

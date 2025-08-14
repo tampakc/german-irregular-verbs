@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CellDirective } from '../cell.directive';
 
 @Component({
@@ -8,6 +8,8 @@ import { CellDirective } from '../cell.directive';
   styleUrls: ['./display-cell.component.css'],
 })
 export class DisplayCellComponent extends CellDirective<string> {
+  @Input() spoiler: boolean = false;
+
   DisplayCellComponent() {
     this.isValid = true;
   }
